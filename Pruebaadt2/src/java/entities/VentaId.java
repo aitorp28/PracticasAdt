@@ -6,9 +6,6 @@
 package entities;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author aitor

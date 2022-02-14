@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -57,6 +58,7 @@ public class Producto implements Serializable{
         this.precio = precio;
     }
 
+  @XmlTransient
     public List<Venta> getVentas() {
         return ventas;
     }
@@ -96,15 +98,15 @@ public class Producto implements Serializable{
         if (!Objects.equals(this.precio, other.precio)) {
             return false;
         }
-        if (!Objects.equals(this.ventas, other.ventas)) {
+       /* if (!Objects.equals(this.ventas, other.ventas)) {
             return false;
-        }
+        }*/
         return true;
     }
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", ventas=" + ventas + '}';
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", venta="+ ventas + '}';
     }
     
 }

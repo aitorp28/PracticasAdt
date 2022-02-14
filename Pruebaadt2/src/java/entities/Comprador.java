@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Comprador extends User implements Serializable{
     
-   
+   private Integer antiguedad;
     @OneToMany(cascade=ALL, mappedBy="comprador")
     private List<Venta> ventas;
 
@@ -43,6 +43,14 @@ public class Comprador extends User implements Serializable{
         int hash = 5;
         hash = 17 * hash + Objects.hashCode(this.ventas);
         return hash;
+    }
+
+    public Integer getAntiguedad() {
+        return antiguedad;
+    }
+
+    public void setAntiguedad(Integer antiguedad) {
+        this.antiguedad = antiguedad;
     }
 
     @Override

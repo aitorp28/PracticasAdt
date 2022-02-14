@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Vendedor extends User implements Serializable {
     
     
-  
+  private String cargo;
     @OneToMany(cascade=ALL, mappedBy="vendedor")
     private List<Venta> ventas;
     
@@ -45,6 +45,14 @@ public class Vendedor extends User implements Serializable {
         int hash = 3;
         hash = 17 * hash + Objects.hashCode(this.ventas);
         return hash;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     @Override

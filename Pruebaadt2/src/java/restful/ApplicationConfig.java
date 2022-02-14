@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(restful.CompradorFacadeREST.class);
+        resources.add(restful.ProductoFacadeREST.class);
         resources.add(restful.UserFacadeREST.class);
         resources.add(restful.VendedorFacadeREST.class);
         resources.add(restful.VentaFacadeREST.class);

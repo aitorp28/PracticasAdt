@@ -7,12 +7,10 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Objects;
-import static javax.persistence.CascadeType.ALL;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -25,66 +23,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Venta implements Serializable{
     
-    @Id
-    @GeneratedValue
-    private 
-    private Integer id;
+    @EmbeddedId
+    private VentaId ventaid;
     private Float precio;
+    @MapsId("vendedorid")
     @ManyToOne
     private Vendedor vendedor;
+    @MapsId("compradorid")
     @ManyToOne  
     private Comprador comprador;
+    @MapsId("productoid")
     @ManyToOne  
     private Producto producto;
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.precio);
-        hash = 53 * hash + Objects.hashCode(this.vendedor);
-        hash = 53 * hash + Objects.hashCode(this.comprador);
-        return hash;
+    public VentaId getVentaid() {
+        return ventaid;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Venta other = (Venta) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.precio, other.precio)) {
-            return false;
-        }
-        if (!Objects.equals(this.vendedor, other.vendedor)) {
-            return false;
-        }
-        if (!Objects.equals(this.comprador, other.comprador)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Venta{" + "id=" + id + ", precio=" + precio + ", vendedor=" + vendedor + ", comprador=" + comprador + '}';
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setVentaid(VentaId ventaid) {
+        this.ventaid = ventaid;
     }
 
     public Float getPrecio() {
@@ -110,5 +67,61 @@ public class Venta implements Serializable{
     public void setComprador(Comprador comprador) {
         this.comprador = comprador;
     }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.ventaid);
+        hash = 17 * hash + Objects.hashCode(this.precio);
+        hash = 17 * hash + Objects.hashCode(this.vendedor);
+        hash = 17 * hash + Objects.hashCode(this.comprador);
+        hash = 17 * hash + Objects.hashCode(this.producto);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Venta other = (Venta) obj;
+        if (!Objects.equals(this.ventaid, other.ventaid)) {
+            return false;
+        }
+        if (!Objects.equals(this.precio, other.precio)) {
+            return false;
+        }
+        if (!Objects.equals(this.vendedor, other.vendedor)) {
+            return false;
+        }
+        if (!Objects.equals(this.comprador, other.comprador)) {
+            return false;
+        }
+        if (!Objects.equals(this.producto, other.producto)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "ventaid=" + ventaid + ", precio=" + precio + ", vendedor=" + vendedor + ", comprador=" + comprador + ", producto=" + producto + '}';
+    }
+
+   
     
 }
