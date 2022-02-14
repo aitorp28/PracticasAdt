@@ -23,13 +23,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="USER", schema="pruebaadt2")
+@Table(name = "USER", schema = "pruebaadt2")
 @XmlRootElement
-public class User implements Serializable{
-    
+public class User implements Serializable {
+
     @Id
     @GeneratedValue
     private Integer id;
+    
     private String name;
     private Integer edad;
     private Integer telefono;

@@ -20,16 +20,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author aitor
  */
 @Entity
-@Table (name="VENDEDOR", schema="pruebaadt2")
+@Table(name = "VENDEDOR", schema = "pruebaadt2")
 @XmlRootElement
 public class Vendedor extends User implements Serializable {
-    
-    
-  private String cargo;
-    @OneToMany(cascade=ALL, mappedBy="vendedor")
-    private List<Venta> ventas;
-    
 
+    private String cargo;
+    @OneToMany(cascade = ALL, mappedBy = "vendedor")
+    private List<Venta> ventas;
 
     @XmlTransient
     public List<Venta> getVentas() {
@@ -78,5 +75,4 @@ public class Vendedor extends User implements Serializable {
         return "Vendedor{" + "ventas=" + ventas + '}';
     }
 
-   
 }

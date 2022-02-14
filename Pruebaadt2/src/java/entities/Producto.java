@@ -98,9 +98,9 @@ public class Producto implements Serializable{
         if (!Objects.equals(this.precio, other.precio)) {
             return false;
         }
-       /* if (!Objects.equals(this.ventas, other.ventas)) {
+        if (!Objects.equals(this.ventas, other.ventas)) {
             return false;
-        }*/
+        }
         return true;
     }
 

@@ -26,6 +26,8 @@ public class Venta implements Serializable{
     @EmbeddedId
     private VentaId ventaid;
     private Float precio;
+    
+    
     @MapsId("vendedorid")
     @ManyToOne
     private Vendedor vendedor;
