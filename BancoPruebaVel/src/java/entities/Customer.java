@@ -6,16 +6,12 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
-import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,23 +22,18 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Customer implements Serializable{
     
-   
-     
     @Id
     @GeneratedValue
     private Integer id;
     private String firstName;
     private String lastName;
-    private String middleIntial;
-    private String Street;
+    private String middleInitial;
+    private String street;
     private String city;
     private String state;
     private Integer zip;
     private Integer phone;
     private String email;
-   
-    @OneToMany (cascade = ALL, mappedBy="customer")
-    private List<CustomerAccount> customerAccounts;
 
     public Integer getId() {
         return id;
@@ -68,20 +59,20 @@ public class Customer implements Serializable{
         this.lastName = lastName;
     }
 
-    public String getMiddleIntial() {
-        return middleIntial;
+    public String getMiddleInitial() {
+        return middleInitial;
     }
 
-    public void setMiddleIntial(String middleIntial) {
-        this.middleIntial = middleIntial;
+    public void setMiddleInitial(String middleInitial) {
+        this.middleInitial = middleInitial;
     }
 
     public String getStreet() {
-        return Street;
+        return street;
     }
 
-    public void setStreet(String Street) {
-        this.Street = Street;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getCity() {
@@ -124,29 +115,19 @@ public class Customer implements Serializable{
         this.email = email;
     }
 
-    @XmlTransient
-    public List<CustomerAccount> getCustomerAccounts() {
-        return customerAccounts;
-    }
-
-    public void setCustomerAccounts(List<CustomerAccount> customerAccounts) {
-        this.customerAccounts = customerAccounts;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.firstName);
-        hash = 53 * hash + Objects.hashCode(this.lastName);
-        hash = 53 * hash + Objects.hashCode(this.middleIntial);
-        hash = 53 * hash + Objects.hashCode(this.Street);
-        hash = 53 * hash + Objects.hashCode(this.city);
-        hash = 53 * hash + Objects.hashCode(this.state);
-        hash = 53 * hash + Objects.hashCode(this.zip);
-        hash = 53 * hash + Objects.hashCode(this.phone);
-        hash = 53 * hash + Objects.hashCode(this.email);
-        hash = 53 * hash + Objects.hashCode(this.customerAccounts);
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.firstName);
+        hash = 17 * hash + Objects.hashCode(this.lastName);
+        hash = 17 * hash + Objects.hashCode(this.middleInitial);
+        hash = 17 * hash + Objects.hashCode(this.street);
+        hash = 17 * hash + Objects.hashCode(this.city);
+        hash = 17 * hash + Objects.hashCode(this.state);
+        hash = 17 * hash + Objects.hashCode(this.zip);
+        hash = 17 * hash + Objects.hashCode(this.phone);
+        hash = 17 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -168,16 +149,19 @@ public class Customer implements Serializable{
         if (!Objects.equals(this.lastName, other.lastName)) {
             return false;
         }
-        if (!Objects.equals(this.middleIntial, other.middleIntial)) {
+        if (!Objects.equals(this.middleInitial, other.middleInitial)) {
             return false;
         }
-        if (!Objects.equals(this.Street, other.Street)) {
+        if (!Objects.equals(this.street, other.street)) {
             return false;
         }
         if (!Objects.equals(this.city, other.city)) {
             return false;
         }
         if (!Objects.equals(this.state, other.state)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -189,20 +173,14 @@ public class Customer implements Serializable{
         if (!Objects.equals(this.phone, other.phone)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.customerAccounts, other.customerAccounts)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleIntial=" + middleIntial + ", Street=" + Street + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + ", customerAccounts=" + customerAccounts + '}';
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleInitial=" + middleInitial + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + '}';
     }
-
+    
     
     
 }

@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @NamedQueries({
      @NamedQuery( name="listCarByMarca", query="SELECT c FROM Coche c WHERE c.marca=:marca"),
+    
 })
 //Anotaciones paso 2
 @Entity

@@ -6,6 +6,7 @@
 package restful.service;
 
 import entities.Coche;
+import exception.SelectCollectionException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -67,7 +68,7 @@ public class CocheFacadeREST extends AbstractFacade<Coche> {
     @GET
     @Path("marca/{marca}")
     @Produces({MediaType.APPLICATION_XML, })
-    public List<Coche> listCarByMarca(@PathParam("marca") String marca) {
+    public List<Coche> listCarByMarca(@PathParam("marca") String marca) throws SelectCollectionException {
         List<Coche> coches = null;
         try{
            coches =  em.createNamedQuery("listCarByMarca")
@@ -75,6 +76,7 @@ public class CocheFacadeREST extends AbstractFacade<Coche> {
                .getResultList(); 
         }catch(Exception e){
            LOGGER.info("la marca no esta bien" + e);
+           throw new SelectCollectionException(e.getMessage());
         }
        
            return coches;    

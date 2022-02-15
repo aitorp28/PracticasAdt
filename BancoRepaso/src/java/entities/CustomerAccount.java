@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CustomerAccount implements Serializable{
     
     @EmbeddedId
-    private CustomerAccount customerAccountid;
+    private CustomerAccountId idcustomerAccount;
     
     @MapsId("accountid")
     @ManyToOne
@@ -33,12 +33,12 @@ public class CustomerAccount implements Serializable{
     @ManyToOne
     private Customer customer;
 
-    public CustomerAccount getCustomerAccountid() {
-        return customerAccountid;
+    public CustomerAccountId getIdcustomerAccount() {
+        return idcustomerAccount;
     }
 
-    public void setCustomerAccountid(CustomerAccount customerAccountid) {
-        this.customerAccountid = customerAccountid;
+    public void setIdcustomerAccount(CustomerAccountId idcustomerAccount) {
+        this.idcustomerAccount = idcustomerAccount;
     }
 
     public Account getAccount() {
@@ -59,10 +59,10 @@ public class CustomerAccount implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.customerAccountid);
-        hash = 67 * hash + Objects.hashCode(this.account);
-        hash = 67 * hash + Objects.hashCode(this.customer);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.idcustomerAccount);
+        hash = 97 * hash + Objects.hashCode(this.account);
+        hash = 97 * hash + Objects.hashCode(this.customer);
         return hash;
     }
 
@@ -78,7 +78,7 @@ public class CustomerAccount implements Serializable{
             return false;
         }
         final CustomerAccount other = (CustomerAccount) obj;
-        if (!Objects.equals(this.customerAccountid, other.customerAccountid)) {
+        if (!Objects.equals(this.idcustomerAccount, other.idcustomerAccount)) {
             return false;
         }
         if (!Objects.equals(this.account, other.account)) {
@@ -92,8 +92,10 @@ public class CustomerAccount implements Serializable{
 
     @Override
     public String toString() {
-        return "CustomerAccount{" + "customerAccountid=" + customerAccountid + ", account=" + account + ", customer=" + customer + '}';
+        return "CustomerAccount{" + "idcustomerAccount=" + idcustomerAccount + ", account=" + account + ", customer=" + customer + '}';
     }
+
+    
     
     
     

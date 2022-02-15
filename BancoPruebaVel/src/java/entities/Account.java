@@ -7,20 +7,14 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,10 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name="ACCOUNT", schema="bankdb")
 @XmlRootElement
 public class Account implements Serializable{
-   
-    
-    
-     @Id
+    @Id
     @GeneratedValue
     private Integer id;
     private String description;
@@ -42,15 +33,7 @@ public class Account implements Serializable{
     private Float beginBalance;
     @Temporal(TemporalType.TIMESTAMP)
     private Date beginBalanceTimestamp;
-    @Enumerated(EnumType.STRING)
     private AccountType type;
-    
-    
-    @OneToMany (cascade=ALL, mappedBy="account")
-    private List<Movement> movements;
-    
-    @OneToMany (cascade=ALL, mappedBy="account")
-    private List<CustomerAccount> customeraccounts;
 
     public Integer getId() {
         return id;
@@ -108,36 +91,16 @@ public class Account implements Serializable{
         this.type = type;
     }
 
-    @XmlTransient
-    public List<Movement> getMovements() {
-        return movements;
-    }
-
-    public void setMovements(List<Movement> movements) {
-        this.movements = movements;
-    }
-
-    @XmlTransient
-    public List<CustomerAccount> getCustomeraccounts() {
-        return customeraccounts;
-    }
-
-    public void setCustomeraccounts(List<CustomerAccount> customeraccounts) {
-        this.customeraccounts = customeraccounts;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.description);
-        hash = 29 * hash + Objects.hashCode(this.balance);
-        hash = 29 * hash + Objects.hashCode(this.creditLine);
-        hash = 29 * hash + Objects.hashCode(this.beginBalance);
-        hash = 29 * hash + Objects.hashCode(this.beginBalanceTimestamp);
-        hash = 29 * hash + Objects.hashCode(this.type);
-        hash = 29 * hash + Objects.hashCode(this.movements);
-        hash = 29 * hash + Objects.hashCode(this.customeraccounts);
+        int hash = 3;
+        hash = 11 * hash + Objects.hashCode(this.id);
+        hash = 11 * hash + Objects.hashCode(this.description);
+        hash = 11 * hash + Objects.hashCode(this.balance);
+        hash = 11 * hash + Objects.hashCode(this.creditLine);
+        hash = 11 * hash + Objects.hashCode(this.beginBalance);
+        hash = 11 * hash + Objects.hashCode(this.beginBalanceTimestamp);
+        hash = 11 * hash + Objects.hashCode(this.type);
         return hash;
     }
 
@@ -174,20 +137,13 @@ public class Account implements Serializable{
         if (this.type != other.type) {
             return false;
         }
-        if (!Objects.equals(this.movements, other.movements)) {
-            return false;
-        }
-        if (!Objects.equals(this.customeraccounts, other.customeraccounts)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", description=" + description + ", balance=" + balance + ", creditLine=" + creditLine + ", beginBalance=" + beginBalance + ", beginBalanceTimestamp=" + beginBalanceTimestamp + ", type=" + type + ", movements=" + movements + ", customeraccounts=" + customeraccounts + '}';
+        return "Account{" + "id=" + id + ", description=" + description + ", balance=" + balance + ", creditLine=" + creditLine + ", beginBalance=" + beginBalance + ", beginBalanceTimestamp=" + beginBalanceTimestamp + ", type=" + type + '}';
     }
-    
     
     
 }

@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package restful.service;
+package restful;
 
-import entities.Accidente;
-import exception.SelectCollectionException;
+import entities.Account;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,27 +25,27 @@ import javax.ws.rs.core.MediaType;
  * @author aitor
  */
 @Stateless
-@Path("entities.accidente")
-public class AccidenteFacadeREST extends AbstractFacade<Accidente> {
+@Path("entities.account")
+public class AccountFacadeREST extends AbstractFacade<Account> {
 
-    @PersistenceContext(unitName = "PruebasAdtPU")
+    @PersistenceContext(unitName = "BancoRepasoPU")
     private EntityManager em;
 
-    public AccidenteFacadeREST() {
-        super(Accidente.class);
+    public AccountFacadeREST() {
+        super(Account.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Accidente entity) {
+    public void create(Account entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Accidente entity) {
+    public void edit(@PathParam("id") Integer id, Account entity) {
         super.edit(entity);
     }
 
@@ -59,42 +58,23 @@ public class AccidenteFacadeREST extends AbstractFacade<Accidente> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Accidente find(@PathParam("id") Integer id) {
+    public Account find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Accidente> findAll() {
+    public List<Account> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Accidente> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Account> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
-    
-     @GET
-    @Path("herido/{herido}")
-    @Produces({MediaType.APPLICATION_XML})
-    public List<Accidente> findByCantMuertos(@PathParam("herido") Integer herido) throws SelectCollectionException {
-        List<Accidente> heridos=null;
-        try{
-           heridos=( em.createNamedQuery("findByCantMuertos")
-                .setParameter("herido", herido)
-                .getResultList());
-        }catch(Exception e){
-           
-            throw new SelectCollectionException(e.getMessage());
-        }
-        return heridos;
-                
-    }
-    
- 
 
     @GET
     @Path("count")
