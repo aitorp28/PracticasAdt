@@ -41,9 +41,17 @@ public class Coche implements Serializable {
     private String marca;
     private Integer anio;
     private Integer kilometraje;
+    
     @ManyToOne
     private Conductor conductor;
-
+    
+    
+    @OneToMany ( cascade = ALL, mappedBy="coche")
+    private List<CocheAccidente> accidentes;
+     
+     
+     
+     
     @XmlTransient
     public List<CocheAccidente> getAccidentes() {
         return accidentes;
@@ -52,9 +60,7 @@ public class Coche implements Serializable {
     public void setAccidentes(List<CocheAccidente> accidentes) {
         this.accidentes = accidentes;
     }
-    @OneToMany ( cascade = ALL, mappedBy="coche")
-    
-    private List<CocheAccidente> accidentes;
+   
 
     public Integer getId() {
         return id;
