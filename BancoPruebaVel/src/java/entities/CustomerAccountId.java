@@ -5,10 +5,34 @@
  */
 package entities;
 
+import java.io.Serializable;
+import javax.persistence.Embeddable;
+
 /**
  *
  * @author aitor
  */
-public class CustomerAccountId {
+@Embeddable
+public class CustomerAccountId implements Serializable{
+    
+    
+    private Integer accountid;
+    private Integer customerid;
+
+    public Integer getAccountid() {
+        return accountid;
+    }
+
+    public void setAccountid(Integer accountid) {
+        this.accountid = accountid;
+    }
+
+    public Integer getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(Integer customerid) {
+        this.customerid = customerid;
+    }
     
 }

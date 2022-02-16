@@ -6,17 +6,26 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author aitor
  */
+@NamedQueries({
+    @NamedQuery( name="ListByFirstName", query="SELECT c FROM Customer c WHERE c.firstName=:name" )
+})
 @Entity
 @Table(name="CUSTOMER", schema="bankdb")
 @XmlRootElement
@@ -34,6 +43,9 @@ public class Customer implements Serializable{
     private Integer zip;
     private Integer phone;
     private String email;
+    
+    @OneToMany(cascade=ALL, mappedBy="customer")
+    private List<CustomerAccount> accounts;
 
     public Integer getId() {
         return id;
@@ -115,19 +127,29 @@ public class Customer implements Serializable{
         this.email = email;
     }
 
+    @XmlTransient
+    public List<CustomerAccount> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<CustomerAccount> accounts) {
+        this.accounts = accounts;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.firstName);
-        hash = 17 * hash + Objects.hashCode(this.lastName);
-        hash = 17 * hash + Objects.hashCode(this.middleInitial);
-        hash = 17 * hash + Objects.hashCode(this.street);
-        hash = 17 * hash + Objects.hashCode(this.city);
-        hash = 17 * hash + Objects.hashCode(this.state);
-        hash = 17 * hash + Objects.hashCode(this.zip);
-        hash = 17 * hash + Objects.hashCode(this.phone);
-        hash = 17 * hash + Objects.hashCode(this.email);
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.firstName);
+        hash = 71 * hash + Objects.hashCode(this.lastName);
+        hash = 71 * hash + Objects.hashCode(this.middleInitial);
+        hash = 71 * hash + Objects.hashCode(this.street);
+        hash = 71 * hash + Objects.hashCode(this.city);
+        hash = 71 * hash + Objects.hashCode(this.state);
+        hash = 71 * hash + Objects.hashCode(this.zip);
+        hash = 71 * hash + Objects.hashCode(this.phone);
+        hash = 71 * hash + Objects.hashCode(this.email);
+        hash = 71 * hash + Objects.hashCode(this.accounts);
         return hash;
     }
 
@@ -173,13 +195,18 @@ public class Customer implements Serializable{
         if (!Objects.equals(this.phone, other.phone)) {
             return false;
         }
+        if (!Objects.equals(this.accounts, other.accounts)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleInitial=" + middleInitial + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + '}';
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleInitial=" + middleInitial + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + ", accounts=" + accounts + '}';
     }
+
+   
     
     
     
